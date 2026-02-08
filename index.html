@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wedding of Lusi & Rifki</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <!-- Google Fonts -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Urbanist:wght@300;400;600&display=swap');
         
@@ -20,20 +17,25 @@
         .font-title { font-family: 'Cinzel', serif; }
         .font-body { font-family: 'Urbanist', sans-serif; }
         
-        /* Custom Colors & Gradients */
-        .bg-dark { background-color: #050505; }
-        .gold-gradient {
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        /* Custom Colors - SAGE GREEN THEME */
+        :root {
+            --primary: #5F6F52; /* Sage Green Gelap */
+            --secondary: #A9B388; /* Sage Green Terang */
+            --accent: #B99470; /* Coklat Kayu/Bronze */
+            --bg-cream: #FEFAE0; /* Cream Lembut */
+            --text-dark: #2A3325;
         }
+
+        .text-primary { color: var(--primary); }
+        .text-accent { color: var(--accent); }
+        .bg-cream { background-color: var(--bg-cream); }
         
-        /* Glass Effect */
+        /* Glass Effect untuk Tema Terang */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
         }
 
         /* Animations */
@@ -53,45 +55,44 @@
             animation: fadeInDown 1.5s ease-out forwards;
         }
 
-        /* Bottom Nav Active Indicator */
-        .nav-item.active { color: #D4AF37; }
+        /* Navigasi Aktif */
+        .nav-item.active { color: var(--primary); font-weight: bold; }
         .nav-item.active::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -5px;
             left: 50%;
             transform: translateX(-50%);
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background-color: #D4AF37;
+            background-color: var(--primary);
         }
 
         /* Hide scrollbar */
         ::-webkit-scrollbar { width: 0px; background: transparent; }
     </style>
 </head>
-<body class="bg-dark font-sans text-gray-200 overflow-x-hidden relative selection:bg-[#D4AF37] selection:text-black pb-24">
+<body class="bg-cream font-sans text-[#2A3325] overflow-x-hidden relative selection:bg-[#A9B388] selection:text-white pb-24">
 
-    <!-- AUDIO ELEMENT -->
-    <audio id="bg-music" loop></audio>
+    <audio id="bg-music" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_304243668e.mp3?filename=wedding-cinematic-111559.mp3" type="audio/mp3">
+    </audio>
 
-    <!-- 1. COVER OVERLAY (MODAL PEMBUKA) -->
-    <div id="cover-overlay" class="fixed inset-0 z-[60] flex flex-col items-center justify-between bg-black transition-transform duration-1000 ease-in-out">
-        <!-- Background Image Cover -->
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511285560982-1927bb5a6271?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-40"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80"></div>
+    <div id="cover-overlay" class="fixed inset-0 z-[60] flex flex-col items-center justify-between bg-[#5F6F52] transition-transform duration-1000 ease-in-out">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1505932794465-147d1f1b2c97?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-40"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#5F6F52] via-transparent to-[#5F6F52]/80"></div>
         
         <div class="relative z-10 w-full pt-20 px-6 text-center animate-fade-in-down">
-             <p class="font-title text-sm tracking-[0.3em] text-white/80 mb-4">THE WEDDING OF</p>
-             <h1 class="font-script text-6xl text-[#D4AF37] drop-shadow-lg">Lusi & Rifki</h1>
+             <p class="font-title text-sm tracking-[0.3em] text-white/90 mb-4">THE WEDDING OF</p>
+             <h1 class="font-script text-6xl text-[#FEFAE0] drop-shadow-md">Lusi & Rifki</h1>
         </div>
 
         <div class="relative z-10 w-full pb-16 px-6 text-center">
-            <div class="glass-panel p-6 rounded-2xl mx-auto max-w-xs mb-8 border-t border-[#D4AF37]/50 shadow-2xl">
-                <p class="text-xs text-gray-400 tracking-widest mb-3 uppercase">Kepada Yth.</p>
+            <div class="glass-panel p-6 rounded-2xl mx-auto max-w-xs mb-8 !bg-white/10 !border-white/20 shadow-2xl">
+                <p class="text-xs text-white/80 tracking-widest mb-3 uppercase">Kepada Yth.</p>
                 <h3 class="text-xl font-bold font-title text-white mb-4">Tamu Undangan</h3>
-                <button onclick="openInvitation()" class="group w-full py-3 bg-[#D4AF37] text-black font-bold text-sm tracking-widest rounded-full hover:bg-white transition-colors flex items-center justify-center gap-2">
+                <button onclick="openInvitation()" class="group w-full py-3 bg-[#FEFAE0] text-[#5F6F52] font-bold text-sm tracking-widest rounded-full hover:bg-white transition-colors flex items-center justify-center gap-2 shadow-lg">
                     <i data-lucide="mail-open" class="w-4 h-4 group-hover:scale-110 transition-transform"></i> 
                     BUKA UNDANGAN
                 </button>
@@ -99,135 +100,127 @@
         </div>
     </div>
 
-    <!-- 2. TOMBOL MUSIK MELAYANG -->
     <div id="music-control" class="fixed top-6 right-6 z-50 transition-opacity duration-1000 opacity-0 pointer-events-none">
-        <button onclick="toggleMusic()" id="music-btn" class="w-10 h-10 rounded-full flex items-center justify-center border border-[#D4AF37] bg-black/50 backdrop-blur-md text-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+        <button onclick="toggleMusic()" id="music-btn" class="w-10 h-10 rounded-full flex items-center justify-center border border-[#5F6F52] bg-white/80 backdrop-blur-md text-[#5F6F52] shadow-lg">
             <i data-lucide="music" class="w-4 h-4"></i>
         </button>
     </div>
 
-    <!-- 3. KONTEN UTAMA -->
     <div id="main-content" class="transition-opacity duration-1000 opacity-0">
 
-        <!-- SECTION: HOME -->
-        <section id="home" class="min-h-screen relative flex items-center justify-center py-20 bg-dark section-spy">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511285560982-1927bb5a6271?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-20"></div>
-            <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505]"></div>
-            
+        <section id="home" class="min-h-screen relative flex items-center justify-center py-20 section-spy overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-80 h-80 bg-[#A9B388] rounded-full blur-[100px] opacity-30"></div>
+            <div class="absolute top-40 -left-20 w-60 h-60 bg-[#B99470] rounded-full blur-[80px] opacity-20"></div>
+
             <div class="relative z-10 text-center px-6">
-                <p class="font-title text-[#D4AF37] text-sm tracking-[0.4em] mb-6">WALIMATUL 'URSY</p>
+                <p class="font-title text-[#5F6F52] text-sm tracking-[0.4em] mb-6">WALIMATUL 'URSY</p>
                 
-                <!-- Foto Frame -->
-                <div class="w-64 h-80 mx-auto mb-8 p-1 border border-[#D4AF37]/30 rounded-t-full rounded-b-none relative">
-                     <div class="absolute -inset-2 border border-[#D4AF37]/20 rounded-t-full rounded-b-none -z-10"></div>
-                     <!-- Ganti foto cover di sini -->
-                     <img src="https://images.unsplash.com/photo-1623164228913-c2a41d3d6232?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover rounded-t-full" alt="Couple">
+                <div class="w-64 h-80 mx-auto mb-8 p-2 border-2 border-[#5F6F52]/30 rounded-t-[10rem] rounded-b-xl relative bg-white shadow-xl">
+                     <img src="https://images.unsplash.com/photo-1606103920295-97f88c3aa197?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover rounded-t-[9.5rem] rounded-b-lg" alt="Couple">
                 </div>
 
-                <h1 class="font-script text-6xl gold-gradient mb-2">Lusi & Rifki</h1>
-                <p class="font-body text-gray-400 text-sm tracking-widest mb-8">MINGGU, 15 FEBRUARI 2025</p>
+                <h1 class="font-script text-6xl text-[#5F6F52] mb-2">Lusi & Rifki</h1>
+                <p class="font-body text-[#788570] text-sm tracking-widest mb-8">MINGGU, 15 FEBRUARI 2025</p>
 
-                <!-- Countdown -->
-                <div class="glass-panel p-4 rounded-xl inline-flex gap-4 border-t border-[#D4AF37]/30">
-                    <div class="text-center px-2">
-                        <span id="days" class="block text-xl font-bold text-white">0</span>
-                        <span class="text-[10px] text-[#D4AF37]">HARI</span>
+                <div class="glass-panel p-4 rounded-xl inline-flex gap-4 border border-[#5F6F52]/20">
+                    <div class="text-center px-3">
+                        <span id="days" class="block text-2xl font-title font-bold text-[#5F6F52]">0</span>
+                        <span class="text-[10px] text-[#889E73] font-bold">HARI</span>
                     </div>
-                    <div class="text-center px-2">
-                        <span id="hours" class="block text-xl font-bold text-white">0</span>
-                        <span class="text-[10px] text-[#D4AF37]">JAM</span>
+                    <div class="text-center px-3 border-l border-[#5F6F52]/20">
+                        <span id="hours" class="block text-2xl font-title font-bold text-[#5F6F52]">0</span>
+                        <span class="text-[10px] text-[#889E73] font-bold">JAM</span>
                     </div>
-                    <div class="text-center px-2">
-                        <span id="minutes" class="block text-xl font-bold text-white">0</span>
-                        <span class="text-[10px] text-[#D4AF37]">MENIT</span>
+                    <div class="text-center px-3 border-l border-[#5F6F52]/20">
+                        <span id="minutes" class="block text-2xl font-title font-bold text-[#5F6F52]">0</span>
+                        <span class="text-[10px] text-[#889E73] font-bold">MENIT</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: MEMPELAI -->
-        <section id="mempelai" class="py-24 bg-[#0a0a0a] relative section-spy">
+        <section id="mempelai" class="py-24 relative section-spy bg-white">
             <div class="container mx-auto px-6">
-                <!-- Bismillah -->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Basmala.svg" class="h-12 mx-auto mb-12 filter invert opacity-60" alt="Bismillah">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Basmala.svg" class="h-12 mx-auto mb-12 opacity-80" alt="Bismillah">
                 
-                <h2 class="font-title text-center text-2xl text-[#D4AF37] mb-12 tracking-[0.2em]">MEMPELAI</h2>
+                <h2 class="font-title text-center text-2xl text-[#5F6F52] mb-12 tracking-[0.2em]">MEMPELAI</h2>
 
-                <!-- Mempelai Wanita -->
-                <div class="glass-panel p-8 rounded-2xl mb-8 flex flex-col items-center text-center relative overflow-hidden group border border-[#D4AF37]/20">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#D4AF37]/10 rounded-bl-full -mr-4 -mt-4"></div>
-                    <div class="w-32 h-32 rounded-full border-2 border-[#D4AF37] p-1 mb-4">
-                        <!-- Foto Lusi -->
+                <div class="glass-panel p-8 rounded-2xl mb-8 flex flex-col items-center text-center relative overflow-hidden group shadow-lg">
+                    <div class="absolute top-0 right-0 text-[#A9B388]/20 -mr-8 -mt-8">
+                        <i data-lucide="flower-2" class="w-32 h-32"></i>
+                    </div>
+
+                    <div class="w-32 h-32 rounded-full border-2 border-[#5F6F52] p-1 mb-4 shadow-md bg-white">
                         <img src="https://images.unsplash.com/photo-1532452119098-a3650b3c46d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full rounded-full object-cover" alt="Lusi">
                     </div>
-                    <h3 class="font-script text-4xl text-[#D4AF37] mb-2">Lusi Rahmawati</h3>
-                    <p class="font-title text-sm font-bold mb-4 bg-[#D4AF37]/10 px-3 py-1 rounded-full text-[#D4AF37]">Mempelai Wanita</p>
-                    <div class="font-body text-gray-400 text-sm">
-                        <p class="mb-1">Putri dari</p>
-                        <p class="text-white font-semibold">Bapak Ujang Atang & Ibu Wiwin</p>
+                    <h3 class="font-script text-4xl text-[#5F6F52] mb-2">Lusi Rahmawati</h3>
+                    <p class="font-title text-xs font-bold mb-4 bg-[#5F6F52] px-4 py-1.5 rounded-full text-white tracking-wider">MEMPELAI WANITA</p>
+                    <div class="font-body text-[#788570] text-sm">
+                        <p class="mb-1 italic">Putri dari</p>
+                        <p class="text-[#2A3325] font-semibold">Bapak Ujang Atang & Ibu Wiwin</p>
                     </div>
                 </div>
 
-                <!-- Simbol & -->
-                <div class="text-center text-5xl font-script text-[#D4AF37]/30 my-6">&</div>
+                <div class="text-center text-5xl font-script text-[#B99470] my-6">&</div>
 
-                <!-- Mempelai Pria -->
-                <div class="glass-panel p-8 rounded-2xl flex flex-col items-center text-center relative overflow-hidden border border-[#D4AF37]/20">
-                    <div class="absolute top-0 left-0 w-24 h-24 bg-[#D4AF37]/10 rounded-br-full -ml-4 -mt-4"></div>
-                    <div class="w-32 h-32 rounded-full border-2 border-[#D4AF37] p-1 mb-4">
-                        <!-- Foto Rifki -->
+                <div class="glass-panel p-8 rounded-2xl flex flex-col items-center text-center relative overflow-hidden shadow-lg">
+                     <div class="absolute bottom-0 left-0 text-[#A9B388]/20 -ml-8 -mb-8">
+                        <i data-lucide="flower" class="w-32 h-32"></i>
+                    </div>
+
+                    <div class="w-32 h-32 rounded-full border-2 border-[#5F6F52] p-1 mb-4 shadow-md bg-white">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full rounded-full object-cover" alt="Rifki">
                     </div>
-                    <h3 class="font-script text-4xl text-[#D4AF37] mb-2">Rifki Firdaus</h3>
-                    <p class="font-title text-sm font-bold mb-4 bg-[#D4AF37]/10 px-3 py-1 rounded-full text-[#D4AF37]">Mempelai Pria</p>
-                    <div class="font-body text-gray-400 text-sm">
-                        <p class="mb-1">Putra dari</p>
-                        <p class="text-white font-semibold">Bapak Deni & Ibu Kokoy</p>
+                    <h3 class="font-script text-4xl text-[#5F6F52] mb-2">Rifki Firdaus</h3>
+                    <p class="font-title text-xs font-bold mb-4 bg-[#5F6F52] px-4 py-1.5 rounded-full text-white tracking-wider">MEMPELAI PRIA</p>
+                    <div class="font-body text-[#788570] text-sm">
+                        <p class="mb-1 italic">Putra dari</p>
+                        <p class="text-[#2A3325] font-semibold">Bapak Deni & Ibu Kokoy</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: ACARA -->
-        <section id="acara" class="py-24 bg-[#050505] relative section-spy">
+        <section id="acara" class="py-24 bg-[#FEFAE0] relative section-spy">
             <div class="container mx-auto px-6">
-                <h2 class="font-title text-center text-2xl text-[#D4AF37] mb-12 tracking-[0.2em]">RANGKAIAN ACARA</h2>
+                <h2 class="font-title text-center text-2xl text-[#5F6F52] mb-12 tracking-[0.2em]">RANGKAIAN ACARA</h2>
 
-                <!-- Timeline Container -->
-                <div class="relative border-l border-[#D4AF37]/30 ml-4 md:ml-auto md:mr-auto md:w-full md:max-w-md space-y-12 pl-8 md:pl-0 md:border-l-0">
+                <div class="relative border-l-2 border-[#5F6F52]/20 ml-4 md:ml-auto md:mr-auto md:w-full md:max-w-md space-y-12 pl-8 md:pl-0 md:border-l-0">
                     
-                    <!-- Kartu Akad -->
-                    <div class="relative transform transition hover:-translate-y-1 duration-300">
-                        <div class="absolute -left-[41px] top-0 bg-[#D4AF37] w-6 h-6 rounded-full border-4 border-[#050505] md:hidden shadow-[0_0_10px_#D4AF37]"></div>
-                        <div class="glass-panel p-6 rounded-xl border-l-4 border-[#D4AF37]">
+                    <div class="relative">
+                        <div class="absolute -left-[42px] top-0 bg-[#5F6F52] w-6 h-6 rounded-full border-4 border-[#FEFAE0] md:hidden shadow-md"></div>
+                        <div class="glass-panel p-6 rounded-xl border-t-4 border-t-[#5F6F52] shadow-lg bg-white/60">
                             <div class="flex justify-between items-start mb-4">
-                                <h3 class="font-title text-xl font-bold text-white">Akad Nikah</h3>
-                                <i data-lucide="heart" class="text-[#D4AF37] w-6 h-6"></i>
+                                <h3 class="font-title text-xl font-bold text-[#2A3325]">Akad Nikah</h3>
+                                <div class="bg-[#5F6F52]/10 p-2 rounded-full">
+                                    <i data-lucide="heart-handshake" class="text-[#5F6F52] w-5 h-5"></i>
+                                </div>
                             </div>
-                            <div class="space-y-3 text-sm text-gray-300 font-body">
-                                <p class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#D4AF37] w-4 h-4"></i> Minggu, 15 Februari 2025</p>
-                                <p class="flex items-center gap-3"><i data-lucide="clock" class="text-[#D4AF37] w-4 h-4"></i> Pukul 08.00 WIB</p>
-                                <p class="flex items-start gap-3 text-xs opacity-70 border-t border-gray-700 pt-3 mt-3">
-                                    <i data-lucide="map-pin" class="text-[#D4AF37] w-4 h-4"></i> 
+                            <div class="space-y-3 text-sm text-[#555] font-body">
+                                <p class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#B99470] w-4 h-4"></i> Minggu, 15 Februari 2025</p>
+                                <p class="flex items-center gap-3"><i data-lucide="clock" class="text-[#B99470] w-4 h-4"></i> Pukul 08.00 WIB</p>
+                                <p class="flex items-start gap-3 text-xs opacity-80 border-t border-gray-300 pt-3 mt-3">
+                                    <i data-lucide="map-pin" class="text-[#B99470] w-4 h-4"></i> 
                                     Jln. Burujul, Desa Sirnagalih
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Kartu Resepsi -->
-                    <div class="relative transform transition hover:-translate-y-1 duration-300">
-                        <div class="absolute -left-[41px] top-0 bg-[#D4AF37] w-6 h-6 rounded-full border-4 border-[#050505] md:hidden shadow-[0_0_10px_#D4AF37]"></div>
-                        <div class="glass-panel p-6 rounded-xl border-l-4 border-[#D4AF37]">
+                    <div class="relative">
+                        <div class="absolute -left-[42px] top-0 bg-[#B99470] w-6 h-6 rounded-full border-4 border-[#FEFAE0] md:hidden shadow-md"></div>
+                        <div class="glass-panel p-6 rounded-xl border-t-4 border-t-[#B99470] shadow-lg bg-white/60">
                             <div class="flex justify-between items-start mb-4">
-                                <h3 class="font-title text-xl font-bold text-white">Resepsi</h3>
-                                <i data-lucide="music" class="text-[#D4AF37] w-6 h-6"></i>
+                                <h3 class="font-title text-xl font-bold text-[#2A3325]">Resepsi</h3>
+                                <div class="bg-[#B99470]/10 p-2 rounded-full">
+                                    <i data-lucide="party-popper" class="text-[#B99470] w-5 h-5"></i>
+                                </div>
                             </div>
-                            <div class="space-y-3 text-sm text-gray-300 font-body">
-                                <p class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#D4AF37] w-4 h-4"></i> Minggu, 15 Februari 2025</p>
-                                <p class="flex items-center gap-3"><i data-lucide="clock" class="text-[#D4AF37] w-4 h-4"></i> Pukul 11.00 WIB - Selesai</p>
-                                <p class="flex items-start gap-3 text-xs opacity-70 border-t border-gray-700 pt-3 mt-3">
-                                    <i data-lucide="map-pin" class="text-[#D4AF37] w-4 h-4"></i> 
+                            <div class="space-y-3 text-sm text-[#555] font-body">
+                                <p class="flex items-center gap-3"><i data-lucide="calendar" class="text-[#B99470] w-4 h-4"></i> Minggu, 15 Februari 2025</p>
+                                <p class="flex items-center gap-3"><i data-lucide="clock" class="text-[#B99470] w-4 h-4"></i> Pukul 11.00 WIB - Selesai</p>
+                                <p class="flex items-start gap-3 text-xs opacity-80 border-t border-gray-300 pt-3 mt-3">
+                                    <i data-lucide="map-pin" class="text-[#B99470] w-4 h-4"></i> 
                                     Jln. Burujul, Desa Sirnagalih
                                 </p>
                             </div>
@@ -238,100 +231,75 @@
             </div>
         </section>
 
-        <!-- SECTION: LOKASI -->
-        <section id="lokasi" class="py-24 bg-[#0a0a0a] text-center section-spy">
+        <section id="lokasi" class="py-24 bg-white text-center section-spy">
              <div class="container mx-auto px-6">
-                <h2 class="font-title text-2xl text-[#D4AF37] mb-8 tracking-[0.2em]">LOKASI ACARA</h2>
+                <h2 class="font-title text-2xl text-[#5F6F52] mb-8 tracking-[0.2em]">LOKASI ACARA</h2>
                 
-                <div class="glass-panel p-6 rounded-xl max-w-lg mx-auto mb-8 border border-[#D4AF37]/20">
+                <div class="glass-panel p-6 rounded-xl max-w-lg mx-auto mb-8 bg-white border border-[#5F6F52]/20 shadow-xl">
                     <div class="flex justify-center mb-4">
-                        <i data-lucide="map" class="text-[#D4AF37] w-8 h-8 animate-bounce"></i>
+                        <i data-lucide="map" class="text-[#5F6F52] w-8 h-8 animate-bounce"></i>
                     </div>
-                    <p class="font-body text-gray-300 mb-6 leading-relaxed">
+                    <p class="font-body text-[#555] mb-6 leading-relaxed">
                         Jln. Burujul, Desa Sirnagalih, Rt/Rw:04/01<br/>
                         Kec. Bantarkalong, Kab. Tasikmalaya
                     </p>
                     
-                    <!-- Google Maps Embed (Iframe) -->
-                    <div class="w-full h-48 bg-gray-800 rounded-lg mb-6 overflow-hidden">
+                    <div class="w-full h-48 bg-gray-100 rounded-lg mb-6 overflow-hidden border border-gray-200">
                         <iframe 
                             width="100%" 
                             height="100%" 
-                            style="border:0; filter: grayscale(100%) invert(90%);"
+                            style="border:0;"
                             loading="lazy" 
                             allowfullscreen 
-                            src="https://www.google.com/maps?q=Jln.Burujul,Desa.Sirnagalih,Rt/Rw:04/01+Kec.Bantarkalong,Kab.Tasikmalaya&output=embed">
+                            src="https://maps.google.com/maps?q=Desa+Sirnagalih+Bantarkalong+Tasikmalaya&t=&z=13&ie=UTF8&iwloc=&output=embed">
                         </iframe>
                     </div>
 
-                    <button onclick="openMap()" class="w-full bg-[#D4AF37] text-black font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-white transition-colors flex items-center justify-center gap-2 text-sm tracking-widest">
+                    <button onclick="openMap()" class="w-full bg-[#5F6F52] text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-[#4A5741] transition-colors flex items-center justify-center gap-2 text-sm tracking-widest">
                       <i data-lucide="navigation" class="w-4 h-4"></i> BUKA RUTE MAPS
                     </button>
                 </div>
              </div>
         </section>
 
-        <!-- FOOTER -->
-        <footer class="bg-[#050505] py-12 text-center pb-32 border-t border-[#D4AF37]/10">
-            <h2 class="font-script text-4xl text-[#D4AF37] opacity-60 mb-4">Lusi & Rifki</h2>
-            <p class="text-[10px] text-gray-600 uppercase tracking-widest">© 2025 Wedding Invitation</p>
+        <footer class="bg-[#5F6F52] py-12 text-center pb-32">
+            <h2 class="font-script text-4xl text-[#FEFAE0] opacity-80 mb-4">Lusi & Rifki</h2>
+            <p class="text-[10px] text-white/60 uppercase tracking-widest">© 2025 Wedding Invitation</p>
         </footer>
 
     </div>
 
-    <!-- 4. NAVIGASI BAWAH (MENU) -->
     <div id="bottom-nav" class="fixed bottom-4 left-4 right-4 z-40 transition-transform duration-700 translate-y-[150%]">
-        <div class="glass-panel rounded-2xl px-2 py-3 flex justify-between items-center shadow-2xl bg-[#0a0a0a]/90 backdrop-blur-xl border border-[#D4AF37]/20">
+        <div class="glass-panel rounded-2xl px-2 py-3 flex justify-between items-center shadow-2xl bg-white/90 backdrop-blur-xl border border-[#5F6F52]/20">
             
-            <button onclick="scrollToSection('home')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-gray-500 hover:text-[#D4AF37]" id="nav-home">
+            <button onclick="scrollToSection('home')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-gray-400 hover:text-[#5F6F52]" id="nav-home">
                 <i data-lucide="home" class="w-5 h-5"></i>
                 <span class="text-[10px] font-medium">Home</span>
             </button>
             
-            <button onclick="scrollToSection('mempelai')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-gray-500 hover:text-[#D4AF37]" id="nav-mempelai">
+            <button onclick="scrollToSection('mempelai')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-gray-400 hover:text-[#5F6F52]" id="nav-mempelai">
                 <i data-lucide="heart" class="w-5 h-5"></i>
                 <span class="text-[10px] font-medium">Couple</span>
             </button>
 
-            <!-- Divider -->
-            <div class="w-px h-8 bg-[#D4AF37]/20 mx-1"></div>
+            <div class="w-px h-8 bg-[#5F6F52]/20 mx-1"></div>
 
-            <button onclick="scrollToSection('acara')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-gray-500 hover:text-[#D4AF37]" id="nav-acara">
+            <button onclick="scrollToSection('acara')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-gray-400 hover:text-[#5F6F52]" id="nav-acara">
                 <i data-lucide="calendar" class="w-5 h-5"></i>
                 <span class="text-[10px] font-medium">Event</span>
             </button>
 
-            <button onclick="scrollToSection('lokasi')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-gray-500 hover:text-[#D4AF37]" id="nav-lokasi">
+            <button onclick="scrollToSection('lokasi')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-gray-400 hover:text-[#5F6F52]" id="nav-lokasi">
                 <i data-lucide="map-pin" class="w-5 h-5"></i>
                 <span class="text-[10px] font-medium">Maps</span>
             </button>
         </div>
     </div>
 
-    <!-- SCRIPT UTAMA -->
     <script>
-        // --- KONFIGURASI LAGU GOOGLE DRIVE ---
-        // 1. Upload lagu ke Google Drive -> Klik Kanan -> Get Link -> "Anyone with the link"
-        // 2. Salin linknya. Contoh: https://drive.google.com/file/d/1tzpuYVBRLohPsDBcLad8gYklWsQHDXYt/view?usp=drivesdk
-        // 3. Ambil kode aneh di tengah link (itu adalah ID). Contoh ID: 1gUbXxxxxx-AbCdEfG
-        // 4. Masukkan ID tersebut di bawah ini:
-        
-        const googleDriveId = "1tzpuYVBRLohPsDBcLad8gYklWsQHDXYt"; // <--- MASUKKAN ID FILE LAGU DI SINI (Biarkan kosong jika mau pakai lagu default)
-        
-        // --- JANGAN UBAH DI BAWAH INI KECUALI PAHAM ---
-        
         const audio = document.getElementById('bg-music');
-        let defaultMusic = "https://cdn.pixabay.com/download/audio/2022/11/22/audio_febc508520.mp3?filename=wedding-cinematic-126649.mp3";
-        
-        if (googleDriveId) {
-            audio.src = `https://docs.google.com/uc?export=download&id=${googleDriveId}`;
-        } else {
-            audio.src = defaultMusic;
-        }
-
-        // --- INTERAKSI BUKA UNDANGAN ---
-        let isPlaying = false;
         const musicBtn = document.getElementById('music-btn');
+        let isPlaying = false;
 
         function openInvitation() {
             // Animasi Cover Hilang
@@ -348,10 +316,21 @@
             document.getElementById('music-control').classList.remove('opacity-0', 'pointer-events-none');
             
             // Putar Musik
-            toggleMusic();
+            playMusic();
             
             // Scroll ke atas
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function playMusic() {
+            audio.play().then(() => {
+                isPlaying = true;
+                musicBtn.classList.add('animate-spin-slow');
+                musicBtn.style.opacity = "1";
+            }).catch(e => {
+                console.log("Autoplay failed, user interaction needed", e);
+                // Jika gagal, user harus klik tombol musik manual
+            });
         }
 
         function toggleMusic() {
@@ -359,10 +338,9 @@
                 audio.pause();
                 musicBtn.classList.remove('animate-spin-slow');
                 musicBtn.style.opacity = "0.7";
+                // Ganti icon jadi play (opsional)
             } else {
-                audio.play().catch(e => {
-                    console.log("Autoplay dicegah browser, perlu interaksi user.", e);
-                });
+                audio.play();
                 musicBtn.classList.add('animate-spin-slow');
                 musicBtn.style.opacity = "1";
             }
@@ -401,15 +379,15 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     navItems.forEach(nav => {
-                        nav.classList.remove('active', 'text-[#D4AF37]');
-                        nav.classList.add('text-gray-500');
+                        nav.classList.remove('active');
+                        nav.classList.add('text-gray-400');
                     });
                     
                     const id = entry.target.id;
                     const activeNav = document.getElementById(`nav-${id}`);
                     if(activeNav) {
-                        activeNav.classList.add('active', 'text-[#D4AF37]');
-                        activeNav.classList.remove('text-gray-500');
+                        activeNav.classList.add('active');
+                        activeNav.classList.remove('text-gray-400');
                     }
                 }
             });
@@ -422,5 +400,3 @@
     </script>
 </body>
 </html>
-
-
