@@ -6,215 +6,177 @@
     <title>The Wedding of Lusi & Rifki</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&family=Urbanist:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
         
         /* Font Setup */
         .font-script { font-family: 'Great Vibes', cursive; }
-        .font-title { font-family: 'Cinzel', serif; }
-        .font-body { font-family: 'Urbanist', sans-serif; }
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-body { font-family: 'Montserrat', sans-serif; }
         
-        /* Custom Colors - TERRACOTTA THEME */
+        /* Custom Colors (Terracotta Palette) */
         :root {
-            --primary: #C65D3B; /* Merah Bata */
-            --secondary: #E59866; /* Orange Pudar */
-            --accent: #8D493A; /* Coklat Gelap */
-            --bg-warm: #FDF6F0; /* Cream Hangat */
+            --terracotta-dark: #8D493A;
+            --terracotta: #C65D3B;
+            --terracotta-light: #D0B8A8;
+            --bg-cream: #F8F4E1;
+            --bg-paper: #FAF7F0;
         }
 
-        /* Glass Effect */
-        .glass-panel {
-            background: rgba(255, 251, 247, 0.85);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(198, 93, 59, 0.2);
-            box-shadow: 0 8px 32px rgba(198, 93, 59, 0.1);
+        body {
+            background-color: var(--bg-cream);
+            color: var(--terracotta-dark);
+            background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
         }
 
-        /* Animations */
+        /* Glass / Card Effect */
+        .card-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(198, 93, 59, 0.1);
+            box-shadow: 0 10px 30px rgba(141, 73, 58, 0.05);
+        }
+
+        /* Arch Shape (Lengkungan Khas Terracotta) */
+        .arch-img {
+            border-radius: 15rem 15rem 1rem 1rem;
+        }
+        
+        /* Bunga Putar Halus */
         @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
-        
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        .animate-fade-in-down { animation: fadeInDown 1.5s ease-out forwards; }
-        
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
-        .animate-float { animation: float 4s ease-in-out infinite; }
+        .animate-spin-slow { animation: spin-slow 20s linear infinite; }
 
-        /* Navigasi Aktif */
-        .nav-item.active { color: var(--primary); font-weight: bold; }
-        .nav-item.active::after {
-            content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
-            width: 4px; height: 4px; border-radius: 50%; background-color: var(--primary);
+        /* Navigasi */
+        .nav-active {
+            color: var(--terracotta);
+            transform: translateY(-5px);
         }
 
-        /* Arch Shape */
-        .arch-top { border-radius: 10rem 10rem 1rem 1rem; }
-
-        /* Hide scrollbar */
+        /* Hide Scrollbar */
         ::-webkit-scrollbar { width: 0px; background: transparent; }
     </style>
 </head>
-<body class="bg-[#FDF6F0] font-sans text-[#4A3B32] overflow-x-hidden relative selection:bg-[#C65D3B] selection:text-white pb-24">
+<body class="overflow-x-hidden antialiased pb-24">
 
     <audio id="bg-music" loop>
         <source src="https://raw.githubusercontent.com/randisahara/Weddingrifkilusi/main/Christina%20Perri%20-%20A%20Thousand%20Years%20%5BOfficial%20Music%20Video%5D.mp3" type="audio/mp3">
     </audio>
 
-    <div id="cover-overlay" class="fixed inset-0 z-[60] flex flex-col items-center justify-between bg-[#C65D3B] transition-transform duration-1000 ease-in-out">
-        <div class="absolute inset-0 bg-cover bg-center opacity-30" 
+    <div id="cover-overlay" class="fixed inset-0 z-[60] flex flex-col justify-center items-center bg-[#8D493A] transition-transform duration-1000 ease-in-out">
+        <div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay"
              style="background-image: url('https://raw.githubusercontent.com/randisahara/Weddingrifkilusi/main/bg.jpg');">
         </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#8D493A] via-transparent to-[#8D493A]/80"></div>
         
-        <div class="relative z-10 w-full pt-20 px-6 text-center animate-fade-in-down">
-             <p class="font-title text-sm tracking-[0.3em] text-[#FDF6F0] mb-4">THE WEDDING OF</p>
-             <h1 class="font-script text-6xl text-[#FDF6F0] drop-shadow-md">Lusi & Rifki</h1>
-        </div>
-
-        <div class="relative z-10 w-full pb-16 px-6 text-center">
-            <div class="glass-panel p-6 rounded-t-full rounded-b-2xl mx-auto max-w-xs mb-8 !bg-[#FDF6F0]/10 !border-[#FDF6F0]/30 shadow-2xl backdrop-blur-md">
-                <p class="text-xs text-[#FDF6F0] tracking-widest mb-3 uppercase opacity-80">Kepada Yth.</p>
-                <h3 class="text-xl font-bold font-title text-white mb-6">Tamu Undangan</h3>
-                <button onclick="openInvitation()" class="group w-full py-3 bg-[#FDF6F0] text-[#8D493A] font-bold text-sm tracking-widest rounded-full hover:bg-white transition-all flex items-center justify-center gap-2 shadow-lg hover:scale-105 duration-300">
-                    <i data-lucide="mail-open" class="w-4 h-4"></i> 
-                    BUKA UNDANGAN
+        <div class="relative z-10 text-center px-6" data-aos="fade-up">
+            <p class="font-body text-xs tracking-[0.4em] text-[#F8F4E1] mb-6 uppercase">The Wedding Of</p>
+            <h1 class="font-script text-6xl md:text-8xl text-[#F8F4E1] mb-8 drop-shadow-lg">Lusi & Rifki</h1>
+            
+            <div class="card-panel p-8 rounded-xl max-w-xs mx-auto bg-[#F8F4E1]/10 border border-[#F8F4E1]/20">
+                <p class="text-xs text-[#F8F4E1]/80 tracking-widest mb-2">KEPADA YTH.</p>
+                <h3 class="text-xl font-serif font-bold text-white mb-6">Tamu Undangan</h3>
+                
+                <button onclick="openInvitation()" class="group relative px-8 py-3 bg-[#F8F4E1] text-[#8D493A] font-body text-xs font-bold tracking-widest uppercase rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-all">
+                    <span class="relative z-10 flex items-center gap-2">
+                        <i data-lucide="mail-open" class="w-4 h-4"></i> Buka Undangan
+                    </span>
                 </button>
             </div>
         </div>
     </div>
 
     <div id="music-control" class="fixed top-6 right-6 z-50 transition-opacity duration-1000 opacity-0 pointer-events-none">
-        <button onclick="toggleMusic()" id="music-btn" class="w-10 h-10 rounded-full flex items-center justify-center border border-[#C65D3B] bg-[#FDF6F0]/90 backdrop-blur-md text-[#C65D3B] shadow-lg">
+        <button onclick="toggleMusic()" id="music-btn" class="w-10 h-10 rounded-full flex items-center justify-center border border-[#C65D3B] bg-[#F8F4E1]/80 backdrop-blur text-[#C65D3B] shadow-md hover:scale-110 transition-transform">
             <i data-lucide="music" class="w-4 h-4"></i>
         </button>
     </div>
 
-    <div id="main-content" class="transition-opacity duration-1000 opacity-0">
+    <div id="main-content" class="opacity-0 transition-opacity duration-1000">
 
-        <section id="home" class="min-h-screen relative flex items-center justify-center py-20 section-spy overflow-hidden">
-            <div class="absolute -top-20 -right-20 w-80 h-80 bg-[#E59866] rounded-full blur-[100px] opacity-20"></div>
-            <div class="absolute top-40 -left-20 w-60 h-60 bg-[#C65D3B] rounded-full blur-[80px] opacity-15"></div>
+        <section id="home" class="min-h-screen flex flex-col justify-center items-center py-20 px-6 relative text-center section-spy">
+            <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white/50 to-transparent"></div>
+            
+            <p class="font-body text-[#C65D3B] text-xs tracking-[0.3em] mb-8" data-aos="fade-down">WALIMATUL 'URSY</p>
+            
+            <div class="relative w-72 h-96 mb-8" data-aos="zoom-in" data-aos-duration="1500">
+                <div class="absolute inset-0 border-[1px] border-[#C65D3B] arch-img translate-x-3 translate-y-3"></div>
+                <div class="absolute inset-0 bg-[#D0B8A8] arch-img -translate-x-2 -translate-y-2 opacity-50"></div>
+                <img src="https://raw.githubusercontent.com/randisahara/Weddingrifkilusi/main/cover.jpg" 
+                     class="w-full h-full object-cover arch-img relative z-10 shadow-lg" alt="Cover">
+            </div>
 
-            <div class="relative z-10 text-center px-6">
-                <p class="font-title text-[#C65D3B] text-sm tracking-[0.4em] mb-6">WALIMATUL 'URSY</p>
-                
-                <div class="w-64 h-80 mx-auto mb-8 p-3 border border-[#C65D3B]/40 arch-top relative bg-white shadow-[0_20px_40px_-15px_rgba(198,93,59,0.3)] animate-float">
-                     <div class="absolute inset-0 border border-[#C65D3B]/20 arch-top transform translate-x-2 translate-y-2 -z-10"></div>
-                     <img src="https://raw.githubusercontent.com/randisahara/Weddingrifkilusi/main/cover.jpg" 
-                          class="w-full h-full object-cover arch-top" alt="Cover Foto">
+            <h1 class="font-script text-6xl text-[#8D493A] mb-3" data-aos="fade-up">Lusi & Rifki</h1>
+            <p class="font-serif italic text-[#C65D3B] text-lg" data-aos="fade-up" data-aos-delay="200">Minggu, 15 Februari 2025</p>
+
+            <div class="flex gap-4 mt-8 font-serif text-[#8D493A]" data-aos="fade-up" data-aos-delay="400">
+                <div class="text-center">
+                    <span id="days" class="text-3xl font-bold block">0</span>
+                    <span class="text-[10px] uppercase tracking-wider">Hari</span>
                 </div>
-
-                <h1 class="font-script text-6xl text-[#8D493A] mb-2">Lusi & Rifki</h1>
-                <p class="font-body text-[#8D493A]/70 text-sm tracking-widest mb-8">MINGGU, 15 FEBRUARI 2025</p>
-
-                <div class="glass-panel p-4 rounded-xl inline-flex gap-4 border border-[#C65D3B]/20 bg-white/50">
-                    <div class="text-center px-3">
-                        <span id="days" class="block text-2xl font-title font-bold text-[#C65D3B]">0</span>
-                        <span class="text-[10px] text-[#8D493A] font-bold">HARI</span>
-                    </div>
-                    <div class="text-center px-3 border-l border-[#C65D3B]/20">
-                        <span id="hours" class="block text-2xl font-title font-bold text-[#C65D3B]">0</span>
-                        <span class="text-[10px] text-[#8D493A] font-bold">JAM</span>
-                    </div>
-                    <div class="text-center px-3 border-l border-[#C65D3B]/20">
-                        <span id="minutes" class="block text-2xl font-title font-bold text-[#C65D3B]">0</span>
-                        <span class="text-[10px] text-[#8D493A] font-bold">MENIT</span>
-                    </div>
+                <div class="text-center">
+                    <span class="text-3xl block">:</span>
+                </div>
+                <div class="text-center">
+                    <span id="hours" class="text-3xl font-bold block">0</span>
+                    <span class="text-[10px] uppercase tracking-wider">Jam</span>
+                </div>
+                <div class="text-center">
+                    <span class="text-3xl block">:</span>
+                </div>
+                <div class="text-center">
+                    <span id="minutes" class="text-3xl font-bold block">0</span>
+                    <span class="text-[10px] uppercase tracking-wider">Menit</span>
                 </div>
             </div>
         </section>
 
-        <section id="mempelai" class="py-24 relative section-spy bg-white">
-            <div class="container mx-auto px-6">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Basmala.svg" class="h-12 mx-auto mb-12 opacity-60 filter sepia-[1] hue-rotate-[-30deg]" alt="Bismillah">
-                
-                <h2 class="font-title text-center text-2xl text-[#C65D3B] mb-12 tracking-[0.2em] border-b pb-4 border-[#C65D3B]/20 inline-block w-full">MEMPELAI</h2>
-
-                <div class="glass-panel p-8 rounded-[3rem] mb-8 flex flex-col items-center text-center relative overflow-visible group shadow-lg bg-[#FAF7F2]">
-                    <div class="absolute -top-6 -right-6 text-[#C65D3B]/20 animate-spin-slow">
-                        <i data-lucide="flower" class="w-24 h-24"></i>
-                    </div>
-
-                    <div class="w-40 h-40 rounded-full border-4 border-white shadow-xl mb-6 overflow-hidden relative">
-                        <img src="https://raw.githubusercontent.com/randisahara/Weddingrifkilusi/main/lusi.jpg" 
-                             class="w-full h-full object-cover" alt="Lusi">
-                    </div>
-                    <h3 class="font-script text-4xl text-[#8D493A] mb-2">Lusi Rahmawati</h3>
-                    <p class="font-title text-xs font-bold mb-4 text-[#C65D3B] tracking-widest uppercase">The Bride</p>
-                    <div class="font-body text-[#8D493A]/80 text-sm leading-relaxed">
-                        <p class="mb-1 italic font-script text-lg">Putri dari</p>
-                        <p class="text-[#4A3B32] font-semibold">Bapak Ujang Atang & Ibu Wiwin</p>
-                    </div>
-                </div>
-
-                <div class="text-center text-6xl font-script text-[#E59866] my-8">&</div>
-
-                <div class="glass-panel p-8 rounded-[3rem] flex flex-col items-center text-center relative overflow-visible shadow-lg bg-[#FAF7F2]">
-                     <div class="absolute -bottom-6 -left-6 text-[#C65D3B]/20 animate-spin-slow">
-                        <i data-lucide="flower-2" class="w-24 h-24"></i>
-                    </div>
-
-                    <div class="w-40 h-40 rounded-full border-4 border-white shadow-xl mb-6 overflow-hidden relative">
-                        <img src="https://raw.githubusercontent.com/randisahara/Weddingrifkilusi/main/rifki.jpg" 
-                             class="w-full h-full object-cover" alt="Rifki">
-                    </div>
-                    <h3 class="font-script text-4xl text-[#8D493A] mb-2">Rifki Firdaus</h3>
-                    <p class="font-title text-xs font-bold mb-4 text-[#C65D3B] tracking-widest uppercase">The Groom</p>
-                    <div class="font-body text-[#8D493A]/80 text-sm leading-relaxed">
-                        <p class="mb-1 italic font-script text-lg">Putra dari</p>
-                        <p class="text-[#4A3B32] font-semibold">Bapak Deni & Ibu Kokoy</p>
-                    </div>
-                </div>
+        <section id="mempelai" class="py-24 px-6 relative section-spy">
+            <div class="absolute top-0 right-0 w-32 h-32 opacity-20 text-[#C65D3B] animate-spin-slow">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="currentColor" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.2,-19.2,95.8,-5.2C93.4,8.9,81.8,22,70.6,33.3C59.4,44.6,48.6,54.1,36.5,60.8C24.4,67.5,11,71.4,-1.8,74.5C-14.6,77.6,-27.9,79.9,-39.7,75.3C-51.5,70.7,-61.8,59.2,-70.3,46.4C-78.8,33.6,-85.5,19.5,-85.1,5.5C-84.7,-8.5,-77.2,-22.4,-67.6,-33.7C-58,-45,-46.3,-53.7,-34.2,-61.9C-22.1,-70.1,-9.6,-77.8,4.1,-84.9C17.8,-92,30.5,-98.5,44.7,-76.4Z" transform="translate(100 100)" />
+                </svg>
             </div>
-        </section>
 
-        <section id="acara" class="py-24 bg-[#FDF6F0] relative section-spy">
-            <div class="container mx-auto px-6">
-                <h2 class="font-title text-center text-2xl text-[#C65D3B] mb-12 tracking-[0.2em]">RANGKAIAN ACARA</h2>
+            <div class="max-w-3xl mx-auto text-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Basmala.svg" class="h-10 mx-auto mb-8 opacity-60" alt="Bismillah">
+                
+                <p class="font-serif text-[#8D493A] italic mb-16 leading-relaxed" data-aos="fade-up">
+                    "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya."
+                    <br><span class="text-sm font-bold not-italic mt-2 block">(QS. Ar-Rum: 21)</span>
+                </p>
 
-                <div class="grid gap-8 max-w-lg mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
                     
-                    <div class="glass-panel p-8 rounded-tr-[3rem] rounded-bl-[3rem] rounded-tl-xl rounded-br-xl shadow-lg border-l-4 border-l-[#C65D3B] hover:translate-y-[-5px] transition-transform duration-300 bg-white">
-                        <div class="flex flex-col items-center mb-6">
-                            <div class="bg-[#C65D3B]/10 p-3 rounded-full mb-3">
-                                <i data-lucide="heart-handshake" class="text-[#C65D3B] w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-title text-2xl font-bold text-[#8D493A]">Akad Nikah</h3>
+                    <div class="group" data-aos="fade-right">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <div class="absolute inset-0 rounded-full border-2 border-[#C65D3B] border-dashed animate-spin-slow"></div>
+                            <img src="https://raw.githubusercontent.com/randisahara/Weddingrifkilusi/main/lusi.jpg" 
+                                 class="w-full h-full object-cover rounded-full p-2" alt="Lusi">
                         </div>
-                        <div class="space-y-4 text-center text-[#4A3B32] font-body text-sm">
-                            <div class="flex flex-col items-center gap-1">
-                                <span class="font-bold text-[#C65D3B]">MINGGU</span>
-                                <span class="text-xl font-bold">15 FEBRUARI 2025</span>
-                            </div>
-                            <p class="bg-[#FDF6F0] py-2 px-4 rounded-lg inline-block text-[#8D493A] font-semibold">
-                                Pukul 08.00 WIB
-                            </p>
-                            <p class="text-xs opacity-70 italic mt-2 px-4">
-                                "Jln. Burujul, Desa Sirnagalih"
-                            </p>
+                        <h3 class="font-script text-4xl text-[#C65D3B] mb-2">Lusi Rahmawati</h3>
+                        <p class="text-xs font-body tracking-widest text-[#8D493A] mb-4">THE BRIDE</p>
+                        <div class="text-sm font-serif text-[#8D493A]/80">
+                            Putri dari Bapak Ujang Atang<br>& Ibu Wiwin
                         </div>
                     </div>
 
-                    <div class="glass-panel p-8 rounded-tl-[3rem] rounded-br-[3rem] rounded-tr-xl rounded-bl-xl shadow-lg border-r-4 border-r-[#E59866] hover:translate-y-[-5px] transition-transform duration-300 bg-white">
-                        <div class="flex flex-col items-center mb-6">
-                            <div class="bg-[#E59866]/10 p-3 rounded-full mb-3">
-                                <i data-lucide="party-popper" class="text-[#E59866] w-6 h-6"></i>
-                            </div>
-                            <h3 class="font-title text-2xl font-bold text-[#8D493A]">Resepsi</h3>
+                    <div class="md:hidden text-4xl font-script text-[#D0B8A8]">&</div>
+
+                    <div class="group" data-aos="fade-left">
+                        <div class="relative w-48 h-48 mx-auto mb-6">
+                            <div class="absolute inset-0 rounded-full border-2 border-[#C65D3B] border-dashed animate-spin-slow" style="animation-direction: reverse;"></div>
+                            <img src="https://raw.githubusercontent.com/randisahara/Weddingrifkilusi/main/rifki.jpg" 
+                                 class="w-full h-full object-cover rounded-full p-2" alt="Rifki">
                         </div>
-                        <div class="space-y-4 text-center text-[#4A3B32] font-body text-sm">
-                            <div class="flex flex-col items-center gap-1">
-                                <span class="font-bold text-[#E59866]">MINGGU</span>
-                                <span class="text-xl font-bold">15 FEBRUARI 2025</span>
-                            </div>
-                            <p class="bg-[#FDF6F0] py-2 px-4 rounded-lg inline-block text-[#8D493A] font-semibold">
-                                Pukul 11.00 WIB - Selesai
-                            </p>
-                            <p class="text-xs opacity-70 italic mt-2 px-4">
-                                "Jln. Burujul, Desa Sirnagalih"
-                            </p>
+                        <h3 class="font-script text-4xl text-[#C65D3B] mb-2">Rifki Firdaus</h3>
+                        <p class="text-xs font-body tracking-widest text-[#8D493A] mb-4">THE GROOM</p>
+                        <div class="text-sm font-serif text-[#8D493A]/80">
+                            Putra dari Bapak Deni<br>& Ibu Kokoy
                         </div>
                     </div>
 
@@ -222,56 +184,94 @@
             </div>
         </section>
 
-        <section id="lokasi" class="py-24 bg-white text-center section-spy">
-             <div class="container mx-auto px-6">
-                <h2 class="font-title text-2xl text-[#C65D3B] mb-8 tracking-[0.2em]">LOKASI ACARA</h2>
+        <section id="acara" class="py-24 px-6 relative bg-[#D0B8A8]/10 section-spy">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="font-serif text-3xl italic text-[#8D493A] mb-12" data-aos="fade-up">Rangkaian Acara</h2>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="card-panel p-8 rounded-t-full rounded-b-xl hover:shadow-lg transition-all" data-aos="fade-up">
+                        <div class="w-12 h-12 mx-auto bg-[#C65D3B]/10 rounded-full flex items-center justify-center mb-4 text-[#C65D3B]">
+                            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-body font-bold text-xl text-[#8D493A] mb-4 uppercase tracking-wider">Akad Nikah</h3>
+                        <div class="space-y-2 font-serif text-[#5c3a32]">
+                            <p class="text-lg font-bold">Minggu, 15 Februari 2025</p>
+                            <p>Pukul 08.00 WIB</p>
+                            <div class="w-10 h-px bg-[#C65D3B] mx-auto my-4"></div>
+                            <p class="text-sm italic">"Jln. Burujul, Desa Sirnagalih"</p>
+                        </div>
+                    </div>
+
+                    <div class="card-panel p-8 rounded-b-full rounded-t-xl hover:shadow-lg transition-all" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-12 h-12 mx-auto bg-[#C65D3B]/10 rounded-full flex items-center justify-center mb-4 text-[#C65D3B]">
+                            <i data-lucide="party-popper" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-body font-bold text-xl text-[#8D493A] mb-4 uppercase tracking-wider">Resepsi</h3>
+                        <div class="space-y-2 font-serif text-[#5c3a32]">
+                            <p class="text-lg font-bold">Minggu, 15 Februari 2025</p>
+                            <p>Pukul 11.00 WIB - Selesai</p>
+                            <div class="w-10 h-px bg-[#C65D3B] mx-auto my-4"></div>
+                            <p class="text-sm italic">"Jln. Burujul, Desa Sirnagalih"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lokasi" class="py-24 px-6 section-spy text-center">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="font-serif text-3xl italic text-[#8D493A] mb-8" data-aos="fade-up">Lokasi Acara</h2>
                 
-                <div class="glass-panel p-6 rounded-2xl max-w-lg mx-auto mb-8 bg-[#FAF7F2] border border-[#C65D3B]/20 shadow-xl">
-                    <p class="font-body text-[#4A3B32] mb-6 leading-relaxed">
-                        <span class="font-bold text-[#C65D3B] block mb-2">KEDIAMAN MEMPELAI WANITA</span>
-                        Jln. Burujul, Desa Sirnagalih, Rt/Rw:04/01<br/>
+                <div class="card-panel p-4 rounded-2xl" data-aos="zoom-in">
+                    <p class="font-body text-sm text-[#8D493A] mb-6 leading-relaxed">
+                        <strong>KEDIAMAN MEMPELAI WANITA</strong><br>
+                        Jln. Burujul, Desa Sirnagalih, Rt/Rw:04/01<br>
                         Kec. Bantarkalong, Kab. Tasikmalaya
                     </p>
-                    
-                    <div class="w-full h-56 bg-gray-100 rounded-xl mb-6 overflow-hidden border-4 border-white shadow-inner">
-                        <iframe 
+
+                    <div class="w-full h-64 bg-gray-200 rounded-xl overflow-hidden mb-6 border border-[#D0B8A8]">
+                         <iframe 
                             width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen 
                             src="https://maps.google.com/maps?q=Desa+Sirnagalih+Bantarkalong+Tasikmalaya&t=&z=13&ie=UTF8&iwloc=&output=embed">
                         </iframe>
                     </div>
 
-                    <button onclick="openMap()" class="w-full bg-[#C65D3B] text-white font-bold py-4 px-8 rounded-xl shadow-lg hover:bg-[#A04020] transition-colors flex items-center justify-center gap-2 text-sm tracking-widest uppercase">
-                      <i data-lucide="navigation" class="w-5 h-5"></i> Lihat Petunjuk Arah
+                    <button onclick="openMap()" class="w-full py-4 bg-[#C65D3B] text-white font-body text-xs font-bold tracking-[0.2em] uppercase rounded-xl hover:bg-[#8D493A] transition-colors flex items-center justify-center gap-2">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i> Buka Google Maps
                     </button>
                 </div>
-             </div>
+            </div>
         </section>
 
-        <footer class="bg-[#8D493A] py-12 text-center pb-32">
-            <h2 class="font-script text-4xl text-[#FDF6F0] mb-4">Lusi & Rifki</h2>
-            <p class="text-[10px] text-white/60 uppercase tracking-widest font-body">Terima Kasih Atas Doa & Restu Anda</p>
+        <footer class="py-12 text-center bg-[#8D493A] text-[#F8F4E1]">
+            <h2 class="font-script text-4xl mb-2">Lusi & Rifki</h2>
+            <p class="font-body text-[10px] tracking-widest opacity-60">TERIMA KASIH</p>
         </footer>
 
     </div>
 
-    <div id="bottom-nav" class="fixed bottom-6 left-6 right-6 z-40 transition-transform duration-700 translate-y-[150%]">
-        <div class="glass-panel rounded-full px-6 py-4 flex justify-between items-center shadow-2xl bg-white/95 backdrop-blur-xl border border-[#C65D3B]/20">
-            <button onclick="scrollToSection('home')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-[#8D493A]/50 hover:text-[#C65D3B]" id="nav-home">
+    <div id="bottom-nav" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 transition-transform duration-700 translate-y-[200%]">
+        <div class="bg-white/90 backdrop-blur-md rounded-full px-6 py-3 flex items-center gap-6 shadow-2xl border border-[#C65D3B]/20">
+            <button onclick="scrollToSection('home')" id="nav-home" class="text-[#8D493A]/50 hover:text-[#C65D3B] transition-all">
                 <i data-lucide="home" class="w-5 h-5"></i>
             </button>
-            <button onclick="scrollToSection('mempelai')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-[#8D493A]/50 hover:text-[#C65D3B]" id="nav-mempelai">
+            <button onclick="scrollToSection('mempelai')" id="nav-mempelai" class="text-[#8D493A]/50 hover:text-[#C65D3B] transition-all">
                 <i data-lucide="heart" class="w-5 h-5"></i>
             </button>
-            <button onclick="scrollToSection('acara')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-[#8D493A]/50 hover:text-[#C65D3B]" id="nav-acara">
+            <button onclick="scrollToSection('acara')" id="nav-acara" class="text-[#8D493A]/50 hover:text-[#C65D3B] transition-all">
                 <i data-lucide="calendar" class="w-5 h-5"></i>
             </button>
-            <button onclick="scrollToSection('lokasi')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-[#8D493A]/50 hover:text-[#C65D3B]" id="nav-lokasi">
-                <i data-lucide="map-pin" class="w-5 h-5"></i>
+            <button onclick="scrollToSection('lokasi')" id="nav-lokasi" class="text-[#8D493A]/50 hover:text-[#C65D3B] transition-all">
+                <i data-lucide="map" class="w-5 h-5"></i>
             </button>
         </div>
     </div>
 
     <script>
+        // Init AOS (Animation)
+        AOS.init({ duration: 1000, once: true });
+        lucide.createIcons();
+
         const audio = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-btn');
         let isPlaying = false;
@@ -279,8 +279,7 @@
         function openInvitation() {
             document.getElementById('cover-overlay').style.transform = 'translateY(-100%)';
             document.getElementById('main-content').classList.remove('opacity-0');
-            document.getElementById('main-content').classList.add('opacity-100');
-            document.getElementById('bottom-nav').style.transform = 'translateY(0)';
+            document.getElementById('bottom-nav').style.transform = 'translateY(0) translateX(-50%)'; // Fix centering
             document.getElementById('music-control').classList.remove('opacity-0', 'pointer-events-none');
             playMusic();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -307,7 +306,7 @@
             isPlaying = !isPlaying;
         }
 
-        // --- COUNTDOWN TIMER ---
+        // --- COUNTDOWN ---
         const targetDate = new Date('2025-02-15T08:00:00').getTime();
         setInterval(() => {
             const now = new Date().getTime();
@@ -326,20 +325,26 @@
             window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`, '_blank');
         }
 
+        // Scroll Spy
         const sections = document.querySelectorAll('.section-spy');
-        const navItems = document.querySelectorAll('.nav-item');
+        const navItems = document.querySelectorAll('#bottom-nav button');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    navItems.forEach(nav => { nav.classList.remove('active'); nav.classList.add('text-[#8D493A]/50'); });
+                    navItems.forEach(nav => { 
+                        nav.classList.remove('nav-active'); 
+                        nav.classList.add('text-[#8D493A]/50'); 
+                    });
                     const id = entry.target.id;
                     const activeNav = document.getElementById(`nav-${id}`);
-                    if(activeNav) { activeNav.classList.add('active'); activeNav.classList.remove('text-[#8D493A]/50'); }
+                    if(activeNav) { 
+                        activeNav.classList.add('nav-active'); 
+                        activeNav.classList.remove('text-[#8D493A]/50'); 
+                    }
                 }
             });
-        }, { threshold: 0.4 }); 
+        }, { threshold: 0.3 }); 
         sections.forEach(section => observer.observe(section));
-        lucide.createIcons();
     </script>
 </body>
 </html>
