@@ -18,15 +18,13 @@
         
         /* Custom Colors - TERRACOTTA THEME */
         :root {
-            --primary: #C65D3B; /* Merah Bata / Terracotta */
+            --primary: #C65D3B; /* Merah Bata */
             --secondary: #E59866; /* Orange Pudar */
-            --accent: #8D493A; /* Coklat Kemerahan Gelap */
+            --accent: #8D493A; /* Coklat Gelap */
             --bg-warm: #FDF6F0; /* Cream Hangat */
-            --paper: #FFFBF7; /* Putih Kertas */
-            --text-dark: #4A3B32; /* Coklat Gelap */
         }
 
-        /* Glass Effect yang lebih warm */
+        /* Glass Effect */
         .glass-panel {
             background: rgba(255, 251, 247, 0.85);
             backdrop-filter: blur(8px);
@@ -35,50 +33,24 @@
         }
 
         /* Animations */
-        @keyframes spin-slow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-            animation: spin-slow 8s linear infinite;
-        }
+        @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .animate-spin-slow { animation: spin-slow 8s linear infinite; }
         
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-down {
-            animation: fadeInDown 1.5s ease-out forwards;
-        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in-down { animation: fadeInDown 1.5s ease-out forwards; }
         
-        /* Floating Animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
-        }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        .animate-float { animation: float 4s ease-in-out infinite; }
 
         /* Navigasi Aktif */
         .nav-item.active { color: var(--primary); font-weight: bold; }
         .nav-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background-color: var(--primary);
+            content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%);
+            width: 4px; height: 4px; border-radius: 50%; background-color: var(--primary);
         }
 
-        /* Arch Shape (Lengkungan Khas Terracotta) */
-        .arch-top {
-            border-radius: 10rem 10rem 1rem 1rem;
-        }
+        /* Arch Shape */
+        .arch-top { border-radius: 10rem 10rem 1rem 1rem; }
 
         /* Hide scrollbar */
         ::-webkit-scrollbar { width: 0px; background: transparent; }
@@ -91,8 +63,10 @@
     </audio>
 
     <div id="cover-overlay" class="fixed inset-0 z-[60] flex flex-col items-center justify-between bg-[#C65D3B] transition-transform duration-1000 ease-in-out">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=800&auto=format&fit=crop')] bg-cover bg-center opacity-30"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#8D493A] via-transparent to-[#8D493A]/80"></div>
+        <div class="absolute inset-0 bg-cover bg-center opacity-20" 
+             style="background-image: url('https://img.freepik.com/free-vector/hand-drawn-boho-leaves-pattern-design_23-2149666522.jpg?w=996&t=st=1708236000~exp=1708236600~hmac=8c1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef'); filter: grayscale(100%) sepia(1) hue-rotate(-30deg) saturate(2);">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#8D493A] via-transparent to-[#8D493A]/90"></div>
         
         <div class="relative z-10 w-full pt-20 px-6 text-center animate-fade-in-down">
              <p class="font-title text-sm tracking-[0.3em] text-[#FDF6F0] mb-4">THE WEDDING OF</p>
@@ -128,7 +102,8 @@
                 
                 <div class="w-64 h-80 mx-auto mb-8 p-3 border border-[#C65D3B]/40 arch-top relative bg-white shadow-[0_20px_40px_-15px_rgba(198,93,59,0.3)] animate-float">
                      <div class="absolute inset-0 border border-[#C65D3B]/20 arch-top transform translate-x-2 translate-y-2 -z-10"></div>
-                     <img src="https://images.unsplash.com/photo-1606103920295-97f88c3aa197?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover arch-top filter sepia-[0.2]" alt="Couple">
+                     <img src="https://img.freepik.com/free-photo/3d-illustration-muslim-wedding-couple_1057-4429.jpg?w=740&t=st=1708236100~exp=1708236700~hmac=1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef" 
+                          class="w-full h-full object-cover arch-top" alt="Muslim Couple 3D">
                 </div>
 
                 <h1 class="font-script text-6xl text-[#8D493A] mb-2">Lusi & Rifki</h1>
@@ -163,7 +138,8 @@
                     </div>
 
                     <div class="w-40 h-40 rounded-full border-4 border-white shadow-xl mb-6 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1532452119098-a3650b3c46d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover" alt="Lusi">
+                        <img src="https://img.freepik.com/free-photo/3d-rendering-beautiful-muslim-woman-hijab_1057-4447.jpg?w=740&t=st=1708236200~exp=1708236800~hmac=abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234567890" 
+                             class="w-full h-full object-cover" alt="Lusi 3D">
                     </div>
                     <h3 class="font-script text-4xl text-[#8D493A] mb-2">Lusi Rahmawati</h3>
                     <p class="font-title text-xs font-bold mb-4 text-[#C65D3B] tracking-widest uppercase">The Bride</p>
@@ -181,7 +157,8 @@
                     </div>
 
                     <div class="w-40 h-40 rounded-full border-4 border-white shadow-xl mb-6 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover" alt="Rifki">
+                        <img src="https://img.freepik.com/free-photo/3d-rendering-muslim-man-koko-shirt_1057-4436.jpg?w=740&t=st=1708236300~exp=1708236900~hmac=7890abcdef1234567890abcdef1234567890abcdef1234567890abcdef1234" 
+                             class="w-full h-full object-cover" alt="Rifki 3D">
                     </div>
                     <h3 class="font-script text-4xl text-[#8D493A] mb-2">Rifki Firdaus</h3>
                     <p class="font-title text-xs font-bold mb-4 text-[#C65D3B] tracking-widest uppercase">The Groom</p>
@@ -258,11 +235,7 @@
                     
                     <div class="w-full h-56 bg-gray-100 rounded-xl mb-6 overflow-hidden border-4 border-white shadow-inner">
                         <iframe 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;"
-                            loading="lazy" 
-                            allowfullscreen 
+                            width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen 
                             src="https://maps.google.com/maps?q=Desa+Sirnagalih+Bantarkalong+Tasikmalaya&t=&z=13&ie=UTF8&iwloc=&output=embed">
                         </iframe>
                     </div>
@@ -283,19 +256,15 @@
 
     <div id="bottom-nav" class="fixed bottom-6 left-6 right-6 z-40 transition-transform duration-700 translate-y-[150%]">
         <div class="glass-panel rounded-full px-6 py-4 flex justify-between items-center shadow-2xl bg-white/95 backdrop-blur-xl border border-[#C65D3B]/20">
-            
             <button onclick="scrollToSection('home')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-[#8D493A]/50 hover:text-[#C65D3B]" id="nav-home">
                 <i data-lucide="home" class="w-5 h-5"></i>
             </button>
-            
             <button onclick="scrollToSection('mempelai')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-[#8D493A]/50 hover:text-[#C65D3B]" id="nav-mempelai">
                 <i data-lucide="heart" class="w-5 h-5"></i>
             </button>
-
             <button onclick="scrollToSection('acara')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-[#8D493A]/50 hover:text-[#C65D3B]" id="nav-acara">
                 <i data-lucide="calendar" class="w-5 h-5"></i>
             </button>
-
             <button onclick="scrollToSection('lokasi')" class="nav-item w-full flex flex-col items-center gap-1 transition-colors text-[#8D493A]/50 hover:text-[#C65D3B]" id="nav-lokasi">
                 <i data-lucide="map-pin" class="w-5 h-5"></i>
             </button>
@@ -308,23 +277,12 @@
         let isPlaying = false;
 
         function openInvitation() {
-            // Animasi Cover Hilang
             document.getElementById('cover-overlay').style.transform = 'translateY(-100%)';
-            
-            // Animasi Konten Muncul
             document.getElementById('main-content').classList.remove('opacity-0');
             document.getElementById('main-content').classList.add('opacity-100');
-            
-            // Animasi Navigasi Muncul
             document.getElementById('bottom-nav').style.transform = 'translateY(0)';
-            
-            // Tampilkan Tombol Musik
             document.getElementById('music-control').classList.remove('opacity-0', 'pointer-events-none');
-            
-            // Putar Musik
             playMusic();
-            
-            // Scroll ke atas
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -333,9 +291,7 @@
                 isPlaying = true;
                 musicBtn.classList.add('animate-spin-slow');
                 musicBtn.style.opacity = "1";
-            }).catch(e => {
-                console.log("Autoplay failed, user interaction needed", e);
-            });
+            }).catch(e => { console.log("Autoplay failed", e); });
         }
 
         function toggleMusic() {
@@ -353,11 +309,9 @@
 
         // --- COUNTDOWN TIMER ---
         const targetDate = new Date('2025-02-15T08:00:00').getTime();
-        
         setInterval(() => {
             const now = new Date().getTime();
             const distance = targetDate - now;
-            
             if (distance > 0) {
                 document.getElementById('days').innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
                 document.getElementById('hours').innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -365,41 +319,26 @@
             }
         }, 1000);
 
-        // --- NAVIGASI & SCROLL SPY ---
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
+        function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+        
         function openMap() {
             const address = "Jln.Burujul,Desa.Sirnagalih,Rt/Rw:04/01 Kec.Bantarkalong,Kab.Tasikmalaya";
             window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`, '_blank');
         }
 
-        // Logic untuk highlight menu bawah saat discroll
         const sections = document.querySelectorAll('.section-spy');
         const navItems = document.querySelectorAll('.nav-item');
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    navItems.forEach(nav => {
-                        nav.classList.remove('active');
-                        nav.classList.add('text-[#8D493A]/50');
-                    });
-                    
+                    navItems.forEach(nav => { nav.classList.remove('active'); nav.classList.add('text-[#8D493A]/50'); });
                     const id = entry.target.id;
                     const activeNav = document.getElementById(`nav-${id}`);
-                    if(activeNav) {
-                        activeNav.classList.add('active');
-                        activeNav.classList.remove('text-[#8D493A]/50');
-                    }
+                    if(activeNav) { activeNav.classList.add('active'); activeNav.classList.remove('text-[#8D493A]/50'); }
                 }
             });
         }, { threshold: 0.4 }); 
-
         sections.forEach(section => observer.observe(section));
-
-        // Render Icons
         lucide.createIcons();
     </script>
 </body>
